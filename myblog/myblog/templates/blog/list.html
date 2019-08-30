@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>taluo的 博客系统</title>
+</head>
+<body>
+
+{% extends "./base.html" %}
+
+{% block title %}
+    {% if tag %}
+    标签页: {{ tag.name }}
+    {% endif %}
+    {% if category %}
+    分类页: {{ category.name }}
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+    <ul>
+        {% for post in post_list %}
+        <li>
+            <a href="/post/{{ post.id }}.html">{{ post.title }}</a>
+            <div>
+                <span>作者:{{ post.owner.username }}</span>
+                <span>分类:{{ post.category.name }}</span>
+            </div>
+            <p>{{ post.desc }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+</body>
+</html>
